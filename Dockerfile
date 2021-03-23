@@ -1,9 +1,6 @@
-FROM python:3.7-alpine
-WORKDIR /code
-ENV FLASK_APP app.py
-ENV FLASK_RUN_HOST 0.0.0.0
-RUN apk add --no-cache gcc musl-dev linux-headers
+FROM ubuntu:18.04
+
+RUN sudo apt update -y && sudo apt upgrade -y
+RUN sudo apt install -y docker.io docker-compose
+RUN sudo apt update -y
 COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["flask", "run"]
